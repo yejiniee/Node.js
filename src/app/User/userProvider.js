@@ -22,13 +22,13 @@ exports.retrieveUserList = async function (email) {
   }
 };
 
-exports.retrieveUser = async function (userIdx) {
-  const connection = await pool.getConnection(async (conn) => conn);
-  const userResult = await userDao.selectUserIdx(connection, userIdx);
+exports.retrieveUserInfo = async function (userIdx) {
+  const connection = await pool.getConnection(async (conn) => conn); //DB연경
+  const userInfoResult = await userDao.selectUserInfo(connection, userIdx); //Dao에 UserIdx를 보내 쿼리 실행
 
   connection.release();
 
-  return userResult[0];
+  return userInfoResult[0];
 };
 
 exports.emailCheck = async function (email) {

@@ -22,8 +22,8 @@ module.exports = function(app){
     // 회원 정보 수정 API (JWT 검증 및 Validation - 메소드 체이닝 방식으로 jwtMiddleware 사용)
     app.patch('/app/users/:userId', jwtMiddleware, user.patchUsers)
 
-    // 1.3 유저 상세 조회 api
-    app.get('/users/:userIdx', user.getUser);
+    // 1.3 유저 피드 조회 api
+    app.get('/users/:userIdx', user.getUserFeed);
 
     // 1.4 유저 삭제 api
     app.patch('/users/:userIdx/status', user.patchUserStatus);
