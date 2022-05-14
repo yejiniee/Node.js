@@ -12,9 +12,9 @@ const {emit} = require("nodemon");
  * API Name : 테스트 API
  * [GET] /app/test
  */
-// exports.getTest = async function (req, res) {
-//     return res.send(response(baseResponse.SUCCESS))
-// }
+ //exports.getTest = async function (req, res) {
+ //    return res.send(response(baseResponse.SUCCESS))
+ //}
 
 /**
  * API No. 1
@@ -99,6 +99,31 @@ exports.getUser = async function (req, res) {
 }
 
 /**
+ * API No. 1.4
+ * API Name : 유저 삭제 API 
+ * [PATCH]  /users/:userIdx/status
+ */
+
+ exports.patchUserStatus = async function (req, res) {
+    /*
+        Path Variable: userIdx
+    */
+    const userIdx = req.params.userIdx;
+
+    // validation
+    if(!userIdx) {
+        return res.send(errResponse(baseResponse.USER_USERIDX_EMPTY));
+    } 
+    if (userIdx <= 0) {
+        return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
+    }
+    
+    const editUserStatusResponse = await userService.editUserStatus(userIdx);
+    return res.send(editUserStatusResponse);
+
+ };
+
+/**
  * API No. 3
  * API Name : 특정 유저 조회 API
  * [GET] /app/users/{userId}
@@ -161,8 +186,6 @@ exports.patchUsers = async function (req, res) {
         return res.send(editUserInfo);
     }
 };
-
-
 
 
 

@@ -3,7 +3,7 @@ module.exports = function(app){
     const jwtMiddleware = require('../../../config/jwtMiddleware');
 
     // 0. 테스트 API
-    // app.get('/app/test', user.getTest)
+    //app.get('/app/test', user.getTest);
 
     // 1. 유저 생성 (회원가입) API
     app.post('/app/users', user.postUsers);
@@ -24,6 +24,9 @@ module.exports = function(app){
 
     // 1.3 유저 상세 조회 api
     app.get('/users/:userIdx', user.getUser);
+
+    // 1.4 유저 삭제 api
+    app.patch('/users/:userIdx/status', user.patchUserStatus);
 };
 
 

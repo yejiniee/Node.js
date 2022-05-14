@@ -110,3 +110,23 @@ exports.editUser = async function (id, nickname) {
         return errResponse(baseResponse.DB_ERROR);
     }
 }
+
+exports.editUserStatus = async function (userIdx) {
+    const connection = await pool.getConnection(async (conn) => conn);
+    try {
+       const userStatusResult = await userProvider.checkUserStatus(userIdx);
+       if (userStatusResult == 'INACTIVE'){
+           return errResponse(baseResponse.USER_STATUS_INACTIVE);
+       } 
+
+       const editUserStatusResult = await userDao.updateUserStatus(connection, userIdx);
+
+       return response(baseResponse.SUCCESS);
+    } catch(err) {
+        console.log(`App - editUserStatus Service error\n: ${err.message}`);
+
+        return errResponse(baseResponse.DB_ERROR);
+    } finally {
+        connection.release();
+    }
+}

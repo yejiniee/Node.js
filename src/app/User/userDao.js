@@ -80,6 +80,23 @@ async function updateUserInfo(connection, id, nickname) {
   return updateUserRow[0];
 }
 
+async function selectUserStatus(connection, userIdx){
+  const selectUserStatusQuery=`
+  SELECT status
+  FROM User
+  WHERE userIdx = ?;`;
+  const [UserStatusRow] = await connection.query(selectUserStatusQuery, userIdx);
+  return UserStatusRow;
+}
+
+async function updateUserStatus(connection, userIdx){
+  const updateUserStatusQuery=`
+  UPDATE User
+  SET status ='INACTIVE'
+  WHERE userIdx = ?;`;
+  const updateUserStatusRow = await connection.query(updateUserStatusQuery, userIdx);
+  return updateUserStatusRow[0];
+}
 
 module.exports = {
   selectUser,
@@ -89,4 +106,6 @@ module.exports = {
   selectUserPassword,
   selectUserAccount,
   updateUserInfo,
+  selectUserStatus,
+  updateUserStatus,
 };
