@@ -120,7 +120,6 @@ exports.editUserStatus = async function (userIdx) {
        } 
 
        const editUserStatusResult = await userDao.updateUserStatus(connection, userIdx);
-
        return response(baseResponse.SUCCESS);
     } catch(err) {
         console.log(`App - editUserStatus Service error\n: ${err.message}`);

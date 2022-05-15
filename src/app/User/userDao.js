@@ -22,11 +22,12 @@ async function selectUserEmail(connection, email) {
 // userInfo 조회
 async function selectUserInfo(connection, userIdx) {
   const selectUserInfoQuery = `
-        SELECT u.nickName as nickName,
+        SELECT u.userIdx as userIdx,
+            u.nickName as nickName,
             u.name as name,
             u.profileImgUrl as profileImgUrl,
             u.website as website,
-            u.introduction as introduction,
+            u.introduce as introduce,
             IF(followerCount is null, 0, followerCount) as followerCount,
             If(followingCount is null, 0, followingCount) as followingCount,
             If(postCount is null, 0, postCount) as postCount
