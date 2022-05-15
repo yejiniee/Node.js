@@ -86,27 +86,30 @@ async function selectUserAccount(connection, email) {
 
 async function updateUserInfo(connection, id, nickname) {
   const updateUserQuery = `
-  UPDATE UserInfo 
-  SET nickname = ?
-  WHERE id = ?;`;
+        UPDATE UserInfo 
+        SET nickname = ?
+        WHERE id = ?;
+  `;
   const updateUserRow = await connection.query(updateUserQuery, [nickname, id]);
   return updateUserRow[0];
 }
 
 async function selectUserStatus(connection, userIdx){
-  const selectUserStatusQuery=`
-  SELECT status
-  FROM User
-  WHERE userIdx = ?;`;
+  const selectUserStatusQuery= `
+        SELECT status
+        FROM User
+        WHERE userIdx = ?;
+  `;
   const [UserStatusRow] = await connection.query(selectUserStatusQuery, userIdx);
   return UserStatusRow;
 }
 
 async function updateUserStatus(connection, userIdx){
   const updateUserStatusQuery=`
-  UPDATE User
-  SET status ='INACTIVE'
-  WHERE userIdx = ?;`;
+        UPDATE User
+        SET status ='INACTIVE'
+        WHERE userIdx = ?;
+  `;
   const updateUserStatusRow = await connection.query(updateUserStatusQuery, userIdx);
   return updateUserStatusRow[0];
 }
