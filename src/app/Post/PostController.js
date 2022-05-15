@@ -22,7 +22,7 @@ exports.getPosts = async function(req, res) {
         return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
     }
 
-    const postListResult = await postProvider.retrievePostLists(userIdx);
+    const postListResult = await postProvider.retrievePostLists(userIdx); //userIdx를 provider로 넘겨줌
 
     return res.send(response(baseResponse.SUCCESS, postListResult));
 }
