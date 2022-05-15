@@ -5,7 +5,7 @@ const postProvider = require("./postProvider");
 
 /*
     API No. 3.1
-    API Name: 게시물 조회 API
+    API Name: 게시물 조회 API.
     [GET] /posts?userIdx=
 */
 exports.getPosts = async function(req, res) {
@@ -22,7 +22,7 @@ exports.getPosts = async function(req, res) {
         return res.send(errResponse(baseResponse.USER_USERIDX_LENGTH));
     }
 
-    const postListResult = await postProvider.retrievePostLists(userIdx); //userIdx를 provider로 넘겨줌
+    const postListResult = await postProvider.retrievePostLists(userIdx);
 
     return res.send(response(baseResponse.SUCCESS, postListResult));
 }
